@@ -1,6 +1,8 @@
-﻿using SpeedTest.Net;
+﻿using Microsoft.Extensions.Configuration;
+using SpeedTest.Net;
 using SpeedTest.Net.Enums;
 using System;
+using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Timers;
@@ -14,7 +16,28 @@ namespace speedtest_dotnetcore
 
         static void Main(string[] args)
         {
-            mongoose = new Mongoose();
+            // read the appsettings.json
+            string directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                .SetBasePath(directory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            var configuration = builder.Build();
+
+            string mongodbUrl = configuration["MONGODB_URL"];
+            string dbName = configuration["DB_NAME"];
+            string collectionName = configuration["COLLECTION_NAME"];
+
+            if (string.IsNullOrEmpty(mongodbUrl)) {
+                throw new Exception("MONGODB_URL not found");
+            }
+            if (string.IsNullOrEmpty(dbName)) {
+                throw new Exception("DB_NAME not found");
+            }
+            if (string.IsNullOrEmpty(collectionName)) {
+                throw new Exception("COLLECTION_NAME not found");
+            }
+
+            mongoose = new Mongoose(mongodbUrl, dbName, collectionName);
             createTimer();
 
             Console.WriteLine("Press any key to stop");
@@ -38,22 +61,22 @@ namespace speedtest_dotnetcore
             var result = cmdRunner.Run(@"speedtest-cli\hello.py --csv", null);
             if (result.IsSuccess)
             {
-                mongoose.AddData(
-                    result.Data.TimeStamp,
-                    result.Data.ping,
-                    result.Data.download / 1E6,
-                    result.Data.upload / 1E6,
-                    result.Data.ErrorMessage);
+                //mongoose.AddData(
+                //    result.Data.TimeStamp,
+                //    result.Data.ping,
+                //    result.Data.download / 1E6,
+                //    result.Data.upload / 1E6,
+                //    result.Data.ErrorMessage);
                 Console.WriteLine(result.Data);
             }
             else
             {
-                mongoose.AddData(
-                   result.Data.TimeStamp,
-                   -1,
-                   -1,
-                   -1,
-                   result.Data.ErrorMessage);
+                //mongoose.AddData(
+                //   result.Data.TimeStamp,
+                //   -1,
+                //   -1,
+                //   -1,
+                //   result.Data.ErrorMessage);
                 Console.WriteLine($"Error exited with ${result.Data}");
             }
         }

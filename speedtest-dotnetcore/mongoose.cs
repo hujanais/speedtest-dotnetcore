@@ -18,22 +18,19 @@ namespace speedtest_dotnetcore
 
     public class Mongoose
     {
-        const string MONGODB_URL = // PUT YOUR mongodb connection string here.
-        const string DB_NAME = // NAME OF YOUR database"dryer";
-        const string COLLECTION_NAME = // NAME OF YOUR COLLECTION;
         private MongoClient mongoClient;
         private IMongoDatabase db;
         private IMongoCollection<Entity> collection = null;
 
-        public Mongoose()
+        public Mongoose(string mongodb_url, string db_name, string collectionName)
         {
-            mongoClient = new MongoClient(MONGODB_URL);
-            this.db = mongoClient.GetDatabase(DB_NAME);
+            mongoClient = new MongoClient(mongodb_url);
+            this.db = mongoClient.GetDatabase(db_name);
             bool isDBLive = this.db.RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait(5000);
 
             if (isDBLive)
             {
-                this.collection = this.db.GetCollection<Entity>(COLLECTION_NAME);
+                this.collection = this.db.GetCollection<Entity>(collectionName);
                 Console.WriteLine("MongoDB connected");
             } else
             {
