@@ -8,7 +8,7 @@ namespace speedtest_dotnetcore
 {
     public class RunCmd
     {
-        public ReturnValue Run(string cmd, string args)
+        public ReturnValue Run(string pythonLocationFullPath, string cmd, string args)
         {
             ReturnValue result = null;
             ProcessStartInfo start = new ProcessStartInfo();
