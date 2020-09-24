@@ -15,7 +15,8 @@ You will have to fill in the appsettings.json file with your own details to use.
     - At this point, you should be able to boot up the PI and I just connected the PI to my TV using an HDMI cable. Do the basic Wifi and localization setup.
     - Go to the terminal and type sudo raspi-config. Enable SSH so that you can telnet/putty to it remotely.
     - Reboot the PI and now you can disconnect all all the cables and run it completely headless.
-    - I use Putty to remote to the PI. First job is to update the NodeJS.sudo -s curl -sL https://deb.nodesource.com/setup_12.x | bash - apt-get install -y nodejs
+    - I use Putty to remote to the PI. First job is to update the NodeJS.sudo -s curl -sL https://deb.nodesource.com/setup_12.x | bash 
+    - apt-get install -y nodejs
     - Install .NETCore. Go to dotnet.microsoft.com. You can only use Linux/ARM32 for raspbian 
     - Don’t download but rather copy the directlink. 
     - SSH over to PI and wget the [directlink] 
