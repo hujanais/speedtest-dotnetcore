@@ -12,3 +12,5 @@ Ok, you must be asking by now, why choose .NETCore instead of Python.  Well, I a
 find an excuse to use .NET core.
 
 You will have to fill in the appsettings.json file with your own details to use.
+
+<h2>Setting up the PI-4<h2>
