@@ -21,11 +21,16 @@ You will have to fill in the appsettings.json file with your own details to use.
     - Install .NETCore. Go to dotnet.microsoft.com. You can only use Linux/ARM32 for raspbian
     - [You can read more details here: https://edi.wang/post/2019/9/29/setup-net-core-30-runtime-and-sdk-on-raspberry-pi-4]
     - Important! Don’t download the tar file but rather copy the directlink.
+    - cd Downloads. It is optional but I download the tar file to this directory.
+    - Download the link. wget https://download.visualstudio.microsoft.com/download/pr/8f0dffe3-18f0-4d32-beb0-dbcb9a0d91a1/abe9a34e3f8916478f0bd80402b01b38/dotnet-sdk-3.1.402-linux-arm.tar.gz
     - sudo mkdir /usr/share/dotnet 
-    - download the link. wget https://download.visualstudio.microsoft.com/download/pr/8f0dffe3-18f0-4d32-beb0-dbcb9a0d91a1/abe9a34e3f8916478f0bd80402b01b38/dotnet-sdk-3.1.402-linux-arm.tar.gz
-    - sudo tar zxf dotnet-sdk-3.1.107-linux-arm.tar.gz -C /usr/share/dotnet/ 
+    - sudo tar zxf dotnet-sdk-3.1.402-linux-arm.tar.gz -C /usr/share/dotnet/ 
     - go to /usr/share/dotnet and run ./dotnet just to test. 
-    - sudo nano ~/.profileX export PATH=$PATH:/usr/share/dotnet export DOTNET_ROOT=/usr/share/dotnet 
+    - sudo nano /home/pi/.bashrc 
+         export PATH=$PATH:/usr/share/dotnet 
+         export DOTNET_ROOT=/usr/share/dotnet 
     - sudo reboot
+    - type dotnet to make sure it is now available from any folder.
+## Cloning code and final setup.
 
 
