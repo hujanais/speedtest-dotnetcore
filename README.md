@@ -14,3 +14,23 @@ find an excuse to use .NET core.
 You will have to fill in the appsettings.json file with your own details to use.
 
 <h2>Setting up the PI-4<h2>
+1.  Download and flash Raspbian Buster using Balena Etcher on a SD card to be used by the PI.
+2.  At this point, you should be able to boot up the PI and I just connected the PI to my TV using an HDMI cable.  Do the basic Wifi and localization setup.
+3.  Go to the terminal and type sudo raspi-config.  Enable SSH so that you can telnet/putty to it remotely.
+4.  Reboot the PI and now you can disconnect all all the cables and run it completely headless.
+5.  I use Putty to remote to the PI. First job is to update the NodeJS.
+    sudo -s
+    curl -sL https://deb.nodesource.com/setup_12.x | bash - 
+    apt-get install -y nodejs
+6.  Install .NETCore.
+    Go to dotnet.microsoft.com.  You can only use Linux/ARM32 for raspbian
+  	Don’t download but rather copy the directlink.
+    SSH over to PI and wget the [directlink]
+    sudo mkdir /usr/share/dotnet
+    sudo tar zxf dotnet-sdk-3.1.107-linux-arm.tar.gz -C /usr/share/dotnet/
+    go to /usr/share/dotnet and run ./dotnet just to test.
+    sudo nano ~/.profileX
+    export PATH=$PATH:/usr/share/dotnet
+    export DOTNET_ROOT=/usr/share/dotnet
+    sudo reboot
+
