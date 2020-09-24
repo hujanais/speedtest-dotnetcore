@@ -13,7 +13,7 @@ find an excuse to use .NET core.
 
 You will have to fill in the appsettings.json file with your own details to use.
 
-<h2>Setting up the PI-4<h2>
+<h2>Setting up the PI-4</h2>
 1.  Download and flash Raspbian Buster using Balena Etcher on a SD card to be used by the PI.
 2.  At this point, you should be able to boot up the PI and I just connected the PI to my TV using an HDMI cable.  Do the basic Wifi and localization setup.
 3.  Go to the terminal and type sudo raspi-config.  Enable SSH so that you can telnet/putty to it remotely.
