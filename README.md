@@ -31,6 +31,9 @@ You will have to fill in the appsettings.json file with your own details to use.
          export DOTNET_ROOT=/usr/share/dotnet 
     - sudo reboot
     - type dotnet to make sure it is now available from any folder.
-## Cloning code and final setup.
 
+# Cloning code and final setup.
+    - git clone https://github.com/hujanais/speedtest-dotnetcore.git
+    - check to see if speedtest.
+    
 
