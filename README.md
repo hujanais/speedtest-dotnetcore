@@ -48,5 +48,10 @@ You will have to fill in the appsettings.json file with your own details to use.
       "PYTHON_CMD": "speedtest-cli\\speedtest.py --json"  // DO NOT CHANGE THIS!
     }
     ```
-    - 
-
+    - You maybe need to change the folders to have write access.  Go to root directory of the git clone and run chmod -R 777 speedtest-dotnetcore.
+    - Go to the folder that contains the .sln file and build the application with dotnet build.
+    - If everything works out, the executable will be in the bin/Debug/netcoreapp3.1/ folder.  
+    
+# Using PM2 for 24/7 operation.
+    - There will be situations where the PI might reboot because of application crashes, power glitches, etc.  
+    Therefore to auto restart the application upon reboot, I suggest using PM2.
