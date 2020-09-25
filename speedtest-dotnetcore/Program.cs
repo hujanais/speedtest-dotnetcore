@@ -12,7 +12,7 @@ namespace speedtest_dotnetcore
 {
     class Program
     {
-        private const int UPDATERATE_MS = 60 * 60 * 1000;   // 60 mins
+        private static int UPDATERATE_MS = 60 * 60 * 1000;   // 60 mins default.  This will be overridden by the appsettings.json
         private static Timer timer = null;
         private static Mongoose mongoose = null;
         private static string pythonFullPath = "";
@@ -32,6 +32,11 @@ namespace speedtest_dotnetcore
             string collectionName = configuration["COLLECTION_NAME"];
             pythonFullPath = configuration["PYTHON_FULLPATH"];
             pythonCmd = configuration["PYTHON_CMD"];
+
+            if (int.TryParse(configuration["REFRESH_RATE_MS"], out UPDATERATE_MS) == false)
+            {
+                throw new Exception("REFRESH_RATE_MS parsing failed.");
+            }
 
             if (string.IsNullOrEmpty(mongodbUrl)) {
                 throw new Exception("MONGODB_URL not found");
