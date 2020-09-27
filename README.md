@@ -39,19 +39,37 @@ You will have to fill in the appsettings.json file with your own details to use.
     - appsettings.json
     ```
     {
-      "MONGODB_URL": "mongodb+srv://hujanais:WuELnPIx57P4CWxA@dryer-cluster-vru4n.mongodb.net/dryer",
+      "MONGODB_URL": "<your mongodb connection string>",
       "DB_NAME": "<The name of the database>",
       "COLLECTION_NAME": "<The name of your collection>",
       "REFRESH_RATE_MS": 1800000, // This is the duration is ms on how often the speedtest will run.
     
       "PYTHON_FULLPATH": "python", // you can just use python on a PI or else use the full path where the python.exe is located. 
-      "PYTHON_CMD": "speedtest-cli\\speedtest.py --json"  // DO NOT CHANGE THIS!
+      "PYTHON_CMD": "speedtest-cli//speedtest.py --json"  // DO NOT CHANGE THIS!
     }
     ```
     - You maybe need to change the folders to have write access.  Go to root directory of the git clone and run chmod -R 777 speedtest-dotnetcore.
-    - Go to the folder that contains the .sln file and build the application with dotnet build.
-    - If everything works out, the executable will be in the bin/Debug/netcoreapp3.1/ folder.  
+    - Go to the folder that contains the .sln file and build the application with dotnet build by typing dotnet build.  Please remember to do this step everytime you make a change to the appsettings.json file.
+    - If everything works out, the executable will be in the bin/Debug/netcoreapp3.1/ folder.
     
 # Using PM2 for 24/7 operation.
     - There will be situations where the PI might reboot because of application crashes, power glitches, etc.  
     Therefore to auto restart the application upon reboot, I suggest using PM2.
+    - sudo npm install -g pm2
+    - goto the folder that contains the executable. i.e. /bin/Debug/netcoreapp3.1
+    - pm2 start "./speedtest-dotnetcore" --name speedtest-dotnetcore
+    - pm2 startup  [ this is the auto-restart command when the pi reboots]
+        - follow the instructions to set the env variable which might look like this,
+            - [PM2] Init System found: systemd
+            - [PM2] To setup the Startup Script, copy/paste the following command:
+            - sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
+    - pm2 save
+        - [PM2] Freeze a process list on reboot via:    $ pm2 save
+        - [PM2] Remove init script via:                 $ pm2 unstartup systemd
+
+    - if you even want to delete this, use pm2 stop and pm2 delete.
+    - reboot the pi.
+    - confirm with pm2 list to make sure the application is registered and being monitored.
+      
+# Other thoughts.
+    - You can also re-structure the code to be a run once instead of being run in a timer.  This can easily be acheieved by using a cron job to run the application.
