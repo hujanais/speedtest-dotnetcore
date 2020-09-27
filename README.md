@@ -73,3 +73,5 @@ You will have to fill in the appsettings.json file with your own details to use.
       
 # Other thoughts.
     - You can also re-structure the code to be a run once instead of being run in a timer.  This can easily be acheieved by using a cron job to run the application.
+    - I also didn't have good luck using WIFI and even connecting to the 5Ghz channel, the download speed cannot go beyond 60MBits/s even though I am expecting 150MBits/s.
+    Eventually, I hardwired and ethernet cable from the PI to my router directly and the values were more in-line with my expectations.
