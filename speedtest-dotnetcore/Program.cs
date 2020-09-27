@@ -60,7 +60,7 @@ namespace speedtest_dotnetcore
             createTimer();
 
             Console.WriteLine("Press any key to stop");
-            Console.ReadKey();
+            Console.Read();  // This works with Linux.
 
         }
 
