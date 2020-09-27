@@ -13,7 +13,7 @@ namespace speedtest_dotnetcore
             ReturnValue result = null;
             ProcessStartInfo start = new ProcessStartInfo();
             // Server ID,Sponsor,Server Name,Timestamp,Distance,Ping,Download,Upload,Share,IP Address
-            start.FileName = @"C:\Users\tlee\AppData\Local\Programs\Python\Python38-32\python.exe";
+            start.FileName = pythonLocationFullPath;
             start.Arguments = string.Format("{0} {1}", cmd, args);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
