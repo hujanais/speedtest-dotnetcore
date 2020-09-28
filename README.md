@@ -6,8 +6,9 @@ Here are some key technologies used for better or for worse.
 - I will write a seperate front-end app using React or Angular to display the data but that is not related to the project here.
 
 Important to note is that I didn't write any of the speedtest capabilities but used a python project called speedtest-cli from https://github.com/sivel/speedtest-cli.git.
-Ok, you must be asking by now, why choose .NETCore instead of Python. Well, I am a C# and Javascript developer and I just wanted to find an excuse to use .NET core.
-You will have to fill in the appsettings.json file with your own details to use.
+Ok, you must be asking by now, why choose .NETCore instead of Python then. Well, I am a C# and Javascript developer and I just wanted to find an excuse to use .NET core.
+
+I will try to document the minimum steps to setting up a brand new Raspberry PI4 to collecting data 24/7/365.
 
 # Setting up the PI-4
     - Download and flash Raspbian Buster using Balena Etcher on a SD card to be used by the PI.
