@@ -80,10 +80,11 @@ namespace speedtest_dotnetcore
         {
             var cmdRunner = new RunCmd();
             var result = cmdRunner.Run(pythonFullPath, pythonCmd, null);
+            var localTime = DateTime.Now;
             if (result.IsSuccess)
             {
                 mongoose.AddData(
-                    result.Data.TimeStamp,
+                    localTime,
                     result.Data.ping,
                     result.Data.download / 1E6,
                     result.Data.upload / 1E6,
@@ -93,7 +94,7 @@ namespace speedtest_dotnetcore
             else
             {
                 mongoose.AddData(
-                   result.Data.TimeStamp,
+                   localTime,
                    -1,
                    -1,
                    -1,
