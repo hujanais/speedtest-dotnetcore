@@ -71,6 +71,11 @@ I will try to document the minimum steps to setting up a brand new Raspberry PI4
     - if you even want to delete this, use pm2 stop and pm2 delete.
     - reboot the pi.
     - confirm with pm2 list to make sure the application is registered and being monitored.
+    - if you need to recompile the application.
+        - pm2 list to find the name of the application managed by PM2.
+        - pm2 stop [app-name] to stop.
+        - dotnet build (if you do not stop PM2, the build will fail because the file will be in-use)
+        - pm2 start [app-name] to restart
       
 # Other thoughts.
     - You can also re-structure the code to be a run once instead of being run in a timer.  This can easily be acheieved by using a cron job to run the application.
