@@ -10,9 +10,9 @@ namespace speedtest_dotnetcore
         public float ping { get; set; }
         public double download { get; set; }
         public double upload { get; set; }
-        public DateTime TimeStamp { get; set; }
 
-        // ErrorMessage is not part of the JSON.
+        // TimeStamp and ErrorMessage is not part of the JSON.
+        public DateTime TimeStamp { get; set; }
         public string ErrorMessage { get; set; }
 
         public override string ToString()

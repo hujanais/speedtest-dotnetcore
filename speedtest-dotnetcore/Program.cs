@@ -84,7 +84,7 @@ namespace speedtest_dotnetcore
             if (result.IsSuccess)
             {
                 mongoose.AddData(
-                    localTime,
+                    result.Data.TimeStamp,
                     result.Data.ping,
                     result.Data.download / 1E6,
                     result.Data.upload / 1E6,
