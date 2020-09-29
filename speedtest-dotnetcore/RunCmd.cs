@@ -30,13 +30,11 @@ namespace speedtest_dotnetcore
             try
             {
                 SpeedTestData speedTestData = JsonSerializer.Deserialize<SpeedTestData>(jsonString);
-                speedTestData.TimeStamp = DateTime.UtcNow;
                 result = new ReturnValue(true, speedTestData);
             } catch (Exception ex)
             {
                 result = new ReturnValue(false, new SpeedTestData()
                 {
-                    TimeStamp = DateTime.UtcNow,
                     ErrorMessage = (ex.InnerException != null) ? ex.InnerException.Message : ex.Message
                 });
             }
